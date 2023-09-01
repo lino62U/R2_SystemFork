@@ -15,7 +15,7 @@ def get_products():
     for product in collection.find():
         products.append({
             "id": str(product["_id"]),
-            "nombre": product["nombre"]
+            "Vendedor": product["Vendedor"]
             # Agrega más campos según tu esquema de datos
         })
     return jsonify(products)
