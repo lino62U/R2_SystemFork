@@ -1,15 +1,36 @@
 import React from "react";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-export default function IndexPage() {
+import { Link } from "react-router-dom";
+export default function IndexPage({ isLogged }) {
   const [product, setProduct] = useState([]);
+  const isMounted = useRef(false);
   useEffect(() => {
-    const getProduct = async () => {
-      const { data } = await axios.get("http://192.168.1.3:5000/products");
-      setProduct(data);
-    };
-    getProduct();
+    if (isMounted.current === false) {
+      const getProduct = async () => {
+        const { data } = await axios.get(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+        console.log(data);
+        setProduct(data);
+      };
+
+      getProduct();
+      return () => (isMounted.current = true);
+    }
   }, []);
-  return <div>{JSON.stringify(product)}</div>;
+  return (
+    <div>
+      {!isLogged ? (
+        <div>
+          <Link to="/login" className="p-3 bg-sky-600">
+            Inisiar Sesion
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
+      
+    </div>
+  );
 }
