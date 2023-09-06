@@ -33,7 +33,7 @@ function App() {
 
           <Route path="*" element={<Error404 />}></Route>
           <Route element={<ProtectedRoute allowedRoles={["admin", "tesoreria","logistica"]}/>}>
-            <Route path="/" element={<div>Hola perra</div>}></Route>
+            <Route path="/" element={<div>Welcome</div>}></Route>
           </Route>
           <Route
             element={<ProtectedRoute allowedRoles={["admin", "tesoreria"]} />}

@@ -2,633 +2,284 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-export default function Navigation({setIsLogged }) {
+export default function Navigation({ setIsLogged }) {
   const logout = () => {
     Cookies.remove("token");
     setIsLogged(false);
   };
+  const items = [
+    {
+      title: "Datos",
+      hasMenu: true,
+      menu: [
+        { title: "Clientes", hasMenu: false },
+        { title: "Proveedores", hasMenu: false },
+        {
+          title: "Articulos",
+          hasMenu: true,
+          menu: [
+            { title: "Ver Stock" },
+            { title: "Mermas Reutilizables", hasMenu: false },
+            { title: "Familia de Articulos", hasMenu: false },
+            { title: "Unidades de Medida", hasMenu: false },
+          ],
+        },
+        { title: "Servicio Terceros", hasMenu: false },
+        {
+          title: "Empreados",
+          hasMenu: true,
+          menu: [
+            { title: "Areas", hasMenu: false },
+            { title: "Cargos", hasMenu: false },
+            { title: "Inactivos", hasMenu: false },
+          ],
+        },
+        {
+          title: "Ordenes Rapidas",
+          hasMenu: true,
+          menu: [
+            { title: "Articulos", hasMenu: false },
+            { title: "Transporte Envios", hasMenu: false },
+            { title: "Inactivos", hasMenu: false },
+            { title: "Tipos Clientes", hasMenu: false },
+          ],
+        },
+        { title: "Producto/Servicio", hasMenu: false },
+        { title: "Viaticos", hasMenu: false },
+        { title: "Mano de Obra", hasMenu: false },
+        { title: "Impresoras", hasMenu: false },
+        { title: "Impuestos", hasMenu: false },
+        { title: "Documentos", hasMenu: false },
+        { title: "Factor de Gastos", hasMenu: false },
+        { title: "Condiciones de Pago", hasMenu: false },
+      ],
+    },
+    {
+      title: "Procesos",
+      hasMenu: true,
+      menu: [
+        { title: "Agenda Virtual", hasMenu: false },
+        {
+          title: "Presupuestos",
+          hasMenu: true,
+          menu: [
+            { title: "Nuevo Presupuesto", hasMenu: false },
+            { title: "Plantillas", hasMenu: false },
+            { title: "Presupuestos", hasMenu: false },
+          ],
+        },
+        { title: "Logistica", hasMenu: false },
+        { title: "Impresiones", hasMenu: false },
+        {
+          title: "Produccion",
+          hasMenu: true,
+          menu: [
+            { title: "Control Mano de Obra", hasMenu: false },
+            { title: "Produccion Pendientes", hasMenu: false },
+            { title: "Produccion en Proceso", hasMenu: false },
+            { title: "Produccion Terminados", hasMenu: false },
+          ],
+        },
+        { title: "Cnc", hasMenu: false },
+        { title: "Diseño", hasMenu: false },
+      ],
+    },
+    {
+      title: "Ventas",
+      hasMenu: true,
+      menu: [
+        { title: "Presupuestos", hasMenu: false },
+        {
+          title: "Ordenes",
+          hasMenu: true,
+          menu: [
+            { title: "Ord Aprobadas", hasMenu: false },
+            { title: "Ord Terminadas", hasMenu: false },
+            { title: "Ord Anuladas", hasMenu: false },
+            { title: "Ord Reabiertas", hasMenu: false },
+            { title: "Ord para Revisar", hasMenu: false },
+            { title: "Ord sin Factura", hasMenu: false },
+          ],
+        },
+        { title: "Ver Procesos", hasMenu: false },
+        {
+          title: "Facturacion",
+          hasMenu: true,
+          menu: [
+            { title: "Nueva Factura", hasMenu: false },
+            { title: "Ordenes para Facturar", hasMenu: false },
+          ],
+        },
+        { title: "Listas Pptos y Ordenes", hasMenu: false },
+      ],
+    },
+    {
+      title: "Reportes y Consultas",
+      hasMenu: true,
+      menu: [],
+    },
+    {
+      title: "Tesoreria",
+      hasMenu: true,
+      menu: [
+        {
+          title: "Facturas",
+          hasMenu: true,
+          menu: [
+            { title: "Nueva factura", hasMenu: false },
+            { title: "Registro de Datos", hasMenu: false },
+          ],
+        },
+        {
+          title: "Libro de Caja",
+          hasMenu: true,
+          menu: [
+            { title: "Caja Menor", hasMenu: false },
+            { title: "Hola de Movimientos", hasMenu: false },
+            { title: "Egresos por Orden", hasMenu: false },
+          ],
+        },
+        { title: "Bancos", hasMenu: false },
+        { title: "Conceptos de Caja", hasMenu: false },
+      ],
+    },
+    {
+      title: "Despachos",
+      hasMenu: true,
+      menu: [{ title: "Guia de Remision", hasMenu: false }],
+    },
+    {
+      title: "RR.HH",
+      hasMenu: true,
+      menu: [
+        { title: "Marcador Servidor", hasMenu: false },
+        { title: "Prueba Tareo", hasMenu: false },
+      ],
+    },
+    {
+      title: "Area Presupuestos",
+      hasMenu: true,
+      menu: [
+        { title: "Tiempos", hasMenu: false },
+        { title: "Trabajos Pendientes", hasMenu: false },
+      ],
+    },
+    {
+      title: "Cierre de Areas",
+      hasMenu: true,
+      menu: [
+        { title: "Desp-Alm-Prod", hasMenu: false },
+        { title: "Impr-Vinil-Diseño", hasMenu: false },
+        { title: "Carp-Acri-Cnc", hasMenu: false },
+        { title: "Solda-Install", hasMenu: false },
+      ],
+    },
+    {
+      title: "CRM",
+      hasMenu: true,
+      menu:[
+        { title: "Prospecciones", hasMenu: false },
+        { title: "Prospecciones Todos", hasMenu: false },
+        { title: "Tablas CRM", hasMenu: true, menu:[
+          { title: "Acciones", hasMenu: false },
+          { title: "Estados", hasMenu: false },
 
+        ] },
+        { title: "Reportes - Prospecciones", hasMenu: false },
+
+      ]
+    }
+
+  ];
   return (
-    <>
-      <nav className="antialiased  p-4 text-sm bg-blue-800">
-        <div className="group inline-block">
-          <button
-            aria-haspopup="true"
-            aria-controls="menu"
-            class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
-          >
-            <span class="pr-1 font-semibold flex-1">Datos</span>
-            <span>
-              <svg
-                class="fill-current h-4 w-4 transform group-hover:-rotate-180
-        transition duration-150 ease-in-out"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </span>
-          </button>
-          <ul
-            aria-hidden="true"
-            className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-  transition duration-150 ease-in-out origin-top min-w-32"
-          >
-            <li className="rounded-sm px-8 py-1 hover:bg-gray-100">
-              <Link to="datos/clientes">Clientes</Link>
-            </li>
-            <li className="rounded-sm px-8 py-1 hover:bg-gray-100">
-              <Link>Provedores</Link>
-            </li>
-            <li className="rounded-sm relative px-8 py-1 hover:bg-gray-100">
+    <nav className="antialiased bg-gray-200 flex justify-start">
+      {items.map((item) => (
+        <div key={item.title} className="group inline-block whitespace-nowrap">
+          {item.hasMenu ? (
+            <>
               <button
                 aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
+                aria-controls="menu"
+                className=" w-36 outline-none focus:outline-none border py-1 bg-white rounded-sm flex items-center min-w-32 hover:bg-slate-400"
               >
-                <span className="pr-1 flex-1">Articulos</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
+                <span className="font-semibold flex-1 text-sm">
+                  {item.title}
                 </span>
+                
               </button>
               <ul
-                id="menu-lang"
+                id="menu"
                 aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-0 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32 
-  "
+                className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-75 ease-in-out origin-top min-w-32"
               >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Ver Stock</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Mermas Reutilizables</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Familia de Articulos</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Unidades de medida</Link>
-                </li>
+                {item.menu.map((subItem) =>
+                  subItem.hasMenu ? (
+                    <>
+                      <li class="rounded-sm relative hover:bg-gray-100">
+                        <button
+                          aria-haspopup="true"
+                          aria-controls="menu-lang"
+                          class="w-full text-left flex items-center outline-none focus:outline-none"
+                        >
+                          <Link
+                            to="/articulos"
+                            className="flex-1 w-full px-3 py-1  bg-sky-0 flex items-center text-sm bg-slate-100 hover:bg-slate-300  whitespace-nowrap"
+                          >
+                            <span class="pr-1 flex-1 text-sm ">
+                              {subItem.title}
+                            </span>
+                            <span class="mr-auto">
+                              <svg
+                                class="fill-current h-4 w-4
+  transition duration-75 ease-in-out"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                              </svg>
+                            </span>
+                          </Link>
+                        </button>
+                        <ul
+                          id="menu-lang"
+                          aria-hidden="true"
+                          class="bg-white border rounded-sm absolute top-0 right-0 
+transition duration-75 ease-in-out origin-top-left
+min-w-24
+"
+                        >
+                          {subItem.menu.map((subSubItem) => (
+                            <li class="rounded-sm flex bg-slate-100">
+                              <Link className="flex-1 w-full px-3 py-1 text-sm bg-slate-100 hover:bg-slate-300 whitespace-nowrap">
+                                {subSubItem.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    </>
+                  ) : (
+                    <li
+                      key={subItem.title}
+                      className="rounded-sm flex bg-slate-100"
+                    >
+                      <Link
+                        className="hover:bg-slate-300 flex-1 w-full px-3 py-1 text-sm bg-slate-100"
+                        to={`/${subItem.title.toLowerCase()}`}
+                      >
+                        {subItem.title}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Servicio de Terceros</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Empleados</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-28 right-0
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Areas</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Cargos</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Inactivos</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Ordenes Rapidas</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-36 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Articulos</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Transporte</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Envios</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Clases de Clientes</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Productos/Servicio</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Viaticos</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Mano de Obra</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Impresoras</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Impuestos</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Documentos</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Factor de Gastos</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Condiciones de Pago</Link>
-            </li>
-          </ul>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
-        {/*procesos*/}
-        <div className="group inline-block">
-          <button
-            aria-haspopup="true"
-            aria-controls="menu"
-            class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
-          >
-            <span class="pr-1 font-semibold flex-1">Procesos</span>
-            <span>
-              <svg
-                class="fill-current h-4 w-4 transform group-hover:-rotate-180
-        transition duration-150 ease-in-out"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </span>
-          </button>
-          <ul
-            aria-hidden="true"
-            className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-  transition duration-150 ease-in-out origin-top min-w-32"
-          >
-            <li className="rounded-sm px-8 py-1 hover:bg-gray-100">
-              <Link>Agenda Virtual</Link>
-            </li>
-            <li className="rounded-sm relative px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Presupuestos</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-0 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32 
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Nuevo Presupuesto</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Plantillas</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Presupuestos</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Logistica</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute  top-14 right-0
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                  <button
-                    aria-haspopup="true"
-                    aria-controls="menu-lang-python"
-                    className="w-full text-left flex items-center outline-none focus:outline-none"
-                  >
-                    <span className="pr-1 flex-1">Compras</span>
-                    <span className="mr-auto">
-                      <svg
-                        className="fill-current h-4 w-4 transition duration-150 ease-in-out"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <ul
-                    id="menu-lang-python"
-                    aria-hidden="true"
-                    className="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32"
-                  >
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Registrar Compra</Link>
-                    </li>
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Orden Compra</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li className="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                  <button
-                    aria-haspopup="true"
-                    aria-controls="menu-lang-python"
-                    className="w-full text-left flex items-center outline-none focus:outline-none"
-                  >
-                    <span className="pr-1 flex-1">Salidas</span>
-                    <span className="mr-auto">
-                      <svg
-                        className="fill-current h-4 w-4 transition duration-150 ease-in-out"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <ul
-                    id="menu-lang-python"
-                    aria-hidden="true"
-                    className="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32"
-                  >
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Salida de Articulo</Link>
-                    </li>
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Descargar de Tintas</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li className="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                  <button
-                    aria-haspopup="true"
-                    aria-controls="menu-lang-python"
-                    className="w-full text-left flex items-center outline-none focus:outline-none"
-                  >
-                    <span className="pr-1 flex-1">Inventario</span>
-                    <span className="mr-auto">
-                      <svg
-                        className="fill-current h-4 w-4 transition duration-150 ease-in-out"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <ul
-                    id="menu-lang-python"
-                    aria-hidden="true"
-                    className="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32"
-                  >
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Nuevo Inventario</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li className="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                  <button
-                    aria-haspopup="true"
-                    aria-controls="menu-lang-python"
-                    className="w-full text-left flex items-center outline-none focus:outline-none"
-                  >
-                    <span className="pr-1 flex-1">Devolucion</span>
-                    <span className="mr-auto">
-                      <svg
-                        className="fill-current h-4 w-4 transition duration-150 ease-in-out"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <ul
-                    id="menu-lang-python"
-                    aria-hidden="true"
-                    className="bg-white border rounded-sm absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left min-w-32"
-                  >
-                    <li className="px-8 py-1 hover:bg-gray-100">
-                      <Link>Devolucion</Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Impresiones</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-20 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Descargar Tintas</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Produccion</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-20 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Control de Mano de Obra</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Produccion Pendientes</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Produccion en Proceso</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Produccion Terminados</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Cnc</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Diseños</Link>
-            </li>
-          </ul>
-        </div>
-        {/*ventas */}
-        <div className="group inline-block">
-          <button
-            aria-haspopup="true"
-            aria-controls="menu"
-            class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
-          >
-            <span class="pr-1 font-semibold flex-1">Ventas</span>
-            <span>
-              <svg
-                class="fill-current h-4 w-4 transform group-hover:-rotate-180
-        transition duration-150 ease-in-out"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </span>
-          </button>
-          <ul
-            aria-hidden="true"
-            className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-  transition duration-150 ease-in-out origin-top min-w-32"
-          >
-            <li className="rounded-sm relative px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Presupuestos</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-0 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32 
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Nuevo Presupuesto</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Plantilla</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Presupuesto</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Ordenenes</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-7 right-0
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Ordenenes Aprodadas</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                <Link>Ordenenes Terminadas</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                <Link>Ordenenes Anuladas</Link>
-                </li>
-                
-                <li className="px-8 py-1 hover:bg-gray-100">
-                <Link>Ordenenes Reabiertas</Link>
-                </li>
-                
-                <li className="px-8 py-1 hover:bg-gray-100">
-                <Link>Ordenenes para Revisar</Link>
-                </li>
-                
-                <li className="px-8 py-1 hover:bg-gray-100">
-                <Link>Terminadas sin Factura</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Ver Procesos</Link>
-            </li>
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <button
-                aria-haspopup="true"
-                aria-controls="menu-lang"
-                className="w-full text-left flex items-center outline-none focus:outline-none"
-              >
-                <span className="pr-1 flex-1">Facturacion</span>
-                <span className="mr-auto">
-                  <svg
-                    className="fill-current h-4 w-4
-            transition duration-150 ease-in-out"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-              </button>
-              <ul
-                id="menu-lang"
-                aria-hidden="true"
-                className="bg-white border rounded-sm absolute top-20 right-0 
-  transition duration-150 ease-in-out origin-top-left
-  min-w-32
-  "
-              >
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Nueva Factura</Link>
-                </li>
-                <li className="px-8 py-1 hover:bg-gray-100">
-                  <Link>Ordenes para Facturar</Link>
-                </li>
-                
-              </ul>
-            </li>
-            
-            <li className="px-8 py-1 hover:bg-gray-100">
-              <Link>Lista Pptos y Ordenes</Link>
-            </li>
-            
-          </ul>
-        </div>
-        <div onClick={logout}>Logout</div>
-      </nav>
-    </>
+      ))}
+      <div onClick={logout}>Logout</div>
+    </nav>
   );
 }

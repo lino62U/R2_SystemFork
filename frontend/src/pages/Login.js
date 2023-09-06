@@ -12,8 +12,8 @@ export default function Login({setIsLogged}) {
     e.preventDefault();
     if (user) {
       try {
-        const res = await axios.post("/login", user);
-        Cookies.set("token", res.data.token);
+        //const res = await axios.post("/login", user);
+        Cookies.set("token", "aaaa");
         setIsLogged(true)
         navigate("/")
       } catch (error) {
