@@ -13,7 +13,7 @@ export default function ProtectedRoute({allowedRoles}) {
       if (!decodedToken || !decodedToken.roles.some((role) => allowedRoles.includes(role))) {
         return <Navigate to="/" />;
       }
-      */
+      */  
       return <Outlet />
     }
     else return <Navigate to="/home" />

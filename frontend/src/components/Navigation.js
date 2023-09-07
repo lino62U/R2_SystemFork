@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
@@ -53,7 +52,7 @@ export default function Navigation({ setIsLogged }) {
             {
               title: "Cargos",
               hasMenu: false,
-              route: "datps/empleados/cargos",
+              route: "datos/empleados/cargos",
             },
             {
               title: "Inactivos",
