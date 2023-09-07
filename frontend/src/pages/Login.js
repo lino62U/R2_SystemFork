@@ -25,11 +25,11 @@ export default function Login({setIsLogged}) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <div>
-      <form>
-        <input onChange={handleChange} placeholder="Username" name="username" />
-        <input onChange={handleChange} placeholder="Password" name="password" />
-        <button onClick={handleClick}>Login</button>
+    <div className="flex justify-center p-10 bg-slate-800">
+      <form className="flex gap-5">
+        <input onChange={handleChange} placeholder="Username" name="username" className="p-5 text-center rounded-md" />
+        <input onChange={handleChange} placeholder="Password" name="password" className="p-5 text-center rounded-md" />
+        <button onClick={handleClick} className="bg-blue-200 rounded-md p-5">Login</button>
       </form>
     </div>
   );

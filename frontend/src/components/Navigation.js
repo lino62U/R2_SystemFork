@@ -354,7 +354,7 @@ export default function Navigation({ setIsLogged }) {
     },
   ];
   return (
-    <div className="flex  justify-around">
+    <div className="flex justify-between">
       <nav className="antialiased bg-gray-200 flex justify-start">
         {items.map((item) => (
           <div
