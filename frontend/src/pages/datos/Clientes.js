@@ -1,17 +1,20 @@
 import Table from "../../components/Table";
-import axios from "../../config/axiosConfig";
-import React, { useEffect, useRef, useState } from "react";
+//import axios from "../../config/axiosConfig";
+import React, {useState } from "react";
 
 export default function Clientes() {
   //const isMounted = useRef(false);
+  const handleClick = () => {
+    //setUser([])
+  }
   const [user, setUser] = useState([
     [
       "id",
       "nombre",
-      "dni/ruc",
+      "dni_ruc",
       "direccion",
       "telefono",
-      "tipo de cliente",
+      "tipo_cliente",
       "estado",
     ],
     [
@@ -21,7 +24,7 @@ export default function Clientes() {
         dni_ruc: "20133176404",
         direccion:
           "MZA. A LOTE. 17 URB. LOS ALAMOS A-17 - VALLECITO - AREQUIPA - AREQUIPA",
-        telefono: "959 740 177",
+        telefono: "959740177",
         tipo_cliente: "R2",
         estado: "Activo",
       },
@@ -59,7 +62,7 @@ export default function Clientes() {
         direccion: "- - AREQUIPA - AREQUIPA",
         telefono: "054208596",
         tipo_cliente: "R2",
-        estado: "Activo",
+        estado:  "Activo",
       },
       {
         id: "9540",
@@ -142,8 +145,8 @@ export default function Clientes() {
   }, []);
   */
   return (
-    <div>
-      <Table columns={user[0]} info={user[1]}></Table>
+    <div >
+      <Table columns={user[0]} info={user[1]} setUser={setUser}></Table>
     </div>
   );
 }

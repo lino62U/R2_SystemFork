@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+//import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import jwt_decode from 'jwt-decode';
+//import jwt_decode from 'jwt-decode';
 
 export default function ProtectedRoute({allowedRoles}) {
     const token = Cookies.get("token");

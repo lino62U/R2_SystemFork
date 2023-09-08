@@ -11,14 +11,14 @@ export default function IndexPage({ isLogged }) {
         const { data } = await axios.get(
           "https://jsonplaceholder.typicode.com/todos"
         );
-        console.log(data);
         setProduct(data);
+        console.log(product);
       };
 
       getProduct();
       return () => (isMounted.current = true);
     }
-  }, []);
+  }, [product]);
   return (
     <div>
       {!isLogged ? (
