@@ -1,12 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { Navigate } from "react-router-dom";
+import Footer from "../pages/Footer";
+import { useState } from "react";
 export default function Navigation({ setIsLogged }) {
+  const navigate = useNavigate();
+  const [infoUser, setInfoUser] = useState(false);
   const logout = () => {
     Cookies.remove("token");
     setIsLogged(false);
-    return <Navigate to="/"/>;
+    navigate("/");
   };
+  const showInfo = () => {
+    if(infoUser) setInfoUser(false)
+    else setInfoUser(true)
+    
+    //navigate("/new");
+  };
+
   const items = [
     {
       title: "Datos",
@@ -449,7 +459,12 @@ min-w-24
           </div>
         ))}
       </nav>
-      <div onClick={logout} className="flex"><button className="w-full px-4 bg-red-500 text-white flex-1">Logout</button></div>
+      <div onClick={showInfo} className="flex pr-14 rounded-md">
+        <button className="w-full px-4 bg-red-500 text-white flex-1 hover:bg-slate-500">
+          Info
+        </button>
+        {infoUser === true && <Footer logout={logout}/>}
+      </div>
     </div>
   );
 }

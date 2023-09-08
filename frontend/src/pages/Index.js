@@ -24,7 +24,7 @@ export default function IndexPage({ isLogged }) {
       {!isLogged ? (
         <div>
           <Link to="/login" className="p-3 bg-sky-600">
-            Inisiar Sesion
+            Iniciar Sesion
           </Link>
         </div>
       ) : (

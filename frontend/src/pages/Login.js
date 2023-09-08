@@ -1,4 +1,4 @@
-//import axios from "../config/axiosConfig";
+import axios from "../config/axiosConfig";
 import React, { useState } from "react";
 import Cookies from "js-cookie"; // Importa la librería js-cookie
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,9 @@ export default function Login({ setIsLogged }) {
     e.preventDefault();
     if (user) {
       try {
-        //const res = await axios.post("/login", user);
-        Cookies.set("token", "aaaa");
+        //const res = await axios.post("auth/login", user);
+        
+        Cookies.set("token", "aaaaaaaaaaaaa");
         setIsLogged(true);
         navigate("/");
       } catch (error) {

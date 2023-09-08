@@ -16,22 +16,24 @@ import Familia from "./pages/datos/articulos/Familia";
 import Mermas from "./pages/datos/articulos/Mermas";
 import Medidas from "./pages/datos/articulos/Medidas";
 import Stock from "./pages/datos/articulos/Stock";
-import IndexEmpleados from "./pages/datos/empleados/IndexEmpleados"
-import Areas from "./pages/datos/empleados/Areas"
-import Cargos from "./pages/datos/empleados/Cargos"
-import Inactivos from "./pages/datos/empleados/Inactivos"
-import OrdArticulos from "./pages/datos/ordenesRapidas/Articulos"
-import OrdInactivos from "./pages/datos/ordenesRapidas/Inactivos"
-import TiposClientes from "./pages/datos/ordenesRapidas/TiposClientes"
-import Transporte from "./pages/datos/ordenesRapidas/Transporte"
-import ProductoServicio from "./pages/datos/ProductoServicio"
-import Viaticos from "./pages/datos/Viaticos"
-import ManoObra from "./pages/datos/ManoObra"
-import Impresoras from "./pages/datos/Impresoras"
-import Impuestos from "./pages/datos/Impuestos"
-import Documentos from "./pages/datos/Documentos"
-import FactorGastos from "./pages/datos/FactorGastos"
-import CondicionesPago from "./pages/datos/CondicionesPago"
+import IndexEmpleados from "./pages/datos/empleados/IndexEmpleados";
+import Areas from "./pages/datos/empleados/Areas";
+import Cargos from "./pages/datos/empleados/Cargos";
+import Inactivos from "./pages/datos/empleados/Inactivos";
+import OrdArticulos from "./pages/datos/ordenesRapidas/Articulos";
+import OrdInactivos from "./pages/datos/ordenesRapidas/Inactivos";
+import TiposClientes from "./pages/datos/ordenesRapidas/TiposClientes";
+import Transporte from "./pages/datos/ordenesRapidas/Transporte";
+import ProductoServicio from "./pages/datos/ProductoServicio";
+import Viaticos from "./pages/datos/Viaticos";
+import ManoObra from "./pages/datos/ManoObra";
+import Impresoras from "./pages/datos/Impresoras";
+import Impuestos from "./pages/datos/Impuestos";
+import Documentos from "./pages/datos/Documentos";
+import FactorGastos from "./pages/datos/FactorGastos";
+import CondicionesPago from "./pages/datos/CondicionesPago";
+import New from "./pages/New";
+import Footer from "./pages/Footer";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -49,6 +51,11 @@ function App() {
           <Route path="*" element={<Error404 />} />
           <Route path="/about" element={<About />} />
           <Route path="/home" element={<IndexPage isLogged={isLogged} />} />
+
+          <Route
+          path="/new"
+            element={<New />}
+          ></Route>
 
           <Route
             element={
@@ -84,25 +91,25 @@ function App() {
               <Route path="cargos" element={<Cargos />} />
               <Route path="inactivos" element={<Inactivos />} />
             </Route>
-            <Route path="ordenesRapidas" >
-              <Route path="" element={<div>Ordenes Rapidas</div>}/>
+            <Route path="ordenesRapidas">
+              <Route path="" element={<div>Ordenes Rapidas</div>} />
               <Route path="articulos" element={<OrdArticulos />} />
               <Route path="inactivos" element={<OrdInactivos />} />
               <Route path="clientes" element={<TiposClientes />} />
               <Route path="transporte" element={<Transporte />} />
             </Route>
-            <Route path="producto&servicio" element={<ProductoServicio/>}/>
-            <Route path="producto&servicio" element={<ProductoServicio/>}/>
-            <Route path="viaticos" element={<Viaticos/>}/>
-            <Route path="manoObra" element={<ManoObra/>}/>
-            <Route path="impresoras" element={<Impresoras/>}/>
-            <Route path="impuestos" element={<Impuestos/>}/>
-            <Route path="documentos" element={<Documentos/>}/>
-            <Route path="gastos" element={<FactorGastos/>}/>
-            <Route path="pago" element={<CondicionesPago/>}/>
-
+            <Route path="producto&servicio" element={<ProductoServicio />} />
+            <Route path="producto&servicio" element={<ProductoServicio />} />
+            <Route path="viaticos" element={<Viaticos />} />
+            <Route path="manoObra" element={<ManoObra />} />
+            <Route path="impresoras" element={<Impresoras />} />
+            <Route path="impuestos" element={<Impuestos />} />
+            <Route path="documentos" element={<Documentos />} />
+            <Route path="gastos" element={<FactorGastos />} />
+            <Route path="pago" element={<CondicionesPago />} />
           </Route>
         </Routes>
+
       </BrowserRouter>
     </div>
   );
