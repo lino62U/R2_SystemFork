@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import Footer from "../pages/Footer";
+import Footer from "../pages/UserDetail";
 import { useState } from "react";
 export default function Navigation({ setIsLogged }) {
   const navigate = useNavigate();
@@ -13,8 +13,6 @@ export default function Navigation({ setIsLogged }) {
   const showInfo = () => {
     if(infoUser) setInfoUser(false)
     else setInfoUser(true)
-    
-    //navigate("/new");
   };
 
   const items = [
@@ -328,10 +326,10 @@ export default function Navigation({ setIsLogged }) {
       hasMenu: true,
       route: "cierreAreas",
       menu: [
-        { title: "Desp-Alm-Prod", hasMenu: false, route: "cierreAreas" },
-        { title: "Impr-Vinil-Diseño", hasMenu: false, route: "cierreAreas" },
-        { title: "Carp-Acri-Cnc", hasMenu: false, route: "cierreAreas" },
-        { title: "Solda-Install", hasMenu: false, route: "cierreAreas" },
+        { title: "Desp-Alm-Prod", hasMenu: false, route: "cierreAreas/desp" },
+        { title: "Impr-Vinil-Diseño", hasMenu: false, route: "cierreAreas/impr" },
+        { title: "Carp-Acri-Cnc", hasMenu: false, route: "cierreAreas/capr" },
+        { title: "Solda-Install", hasMenu: false, route: "cierreAreas/solda" },
       ],
     },
     {
@@ -366,13 +364,13 @@ export default function Navigation({ setIsLogged }) {
     <div className="flex justify-between">
       <nav className="antialiased bg-gray-200 flex justify-start">
         {items.map((item) => (
-          <div
-            key={item.title}
+          <div  
+            key={item.route}
             className="group inline-block whitespace-nowrap"
           >
             {item.hasMenu ? (
               <>
-                <Link to={item.route}>
+                <Link to={item.route} key={item.route}>
                   <button
                     aria-haspopup="true"
                     aria-controls="menu"
@@ -391,22 +389,22 @@ export default function Navigation({ setIsLogged }) {
                   {item.menu.map((subItem) =>
                     subItem.hasMenu ? (
                       <>
-                        <li class="rounded-sm relative hover:bg-gray-100">
+                        <li className="rounded-sm relative hover:bg-gray-100" key={subItem.route}>
                           <button
                             aria-haspopup="true"
                             aria-controls="menu-lang"
-                            class="w-full text-left flex items-center outline-none focus:outline-none"
+                            className="w-full text-left flex items-center outline-none focus:outline-none"
                           >
                             <Link
                               to={subItem.route}
                               className="flex-1 w-full px-3 py-1  bg-sky-0 flex items-center text-sm bg-slate-100 hover:bg-slate-300  whitespace-nowrap"
                             >
-                              <span class="pr-1 flex-1 text-sm ">
+                              <span className="pr-1 flex-1 text-sm ">
                                 {subItem.title}
                               </span>
-                              <span class="mr-auto">
+                              <span className="mr-auto">
                                 <svg
-                                  class="fill-current h-4 w-4
+                                  className="fill-current h-4 w-4
   transition duration-75 ease-in-out"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 20 20"
@@ -419,13 +417,13 @@ export default function Navigation({ setIsLogged }) {
                           <ul
                             id="menu-lang"
                             aria-hidden="true"
-                            class="bg-white border rounded-sm absolute top-0 right-0 
+                            className="bg-white border rounded-sm absolute top-0 right-0 
 transition duration-75 ease-in-out origin-top-left
 min-w-24
 "
                           >
                             {subItem.menu.map((subSubItem) => (
-                              <li class="rounded-sm flex bg-slate-100">
+                              <li className="rounded-sm flex bg-slate-100" key={subSubItem.route}>
                                 <Link
                                   to={subSubItem.route}
                                   className="flex-1 w-full px-3 py-1 text-sm bg-slate-100 hover:bg-slate-300 whitespace-nowrap"
@@ -439,7 +437,7 @@ min-w-24
                       </>
                     ) : (
                       <li
-                        key={subItem.title}
+                        key={subItem.route}
                         className="rounded-sm flex bg-slate-100"
                       >
                         <Link

@@ -16,5 +16,5 @@ export default function ProtectedRoute({allowedRoles}) {
       */  
       return <Outlet />
     }
-    else return <Navigate to="/home" />
+    else return <Navigate to="/" />
 }

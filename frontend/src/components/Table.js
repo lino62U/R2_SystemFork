@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
 export default function Table({ columns, info }) {
   const [sortedInfo, setSortedInfo] = useState([...info]);
   const [sortColumn, setSortColumn] = useState(""); // Columna actualmente seleccionada
@@ -7,9 +8,11 @@ export default function Table({ columns, info }) {
   const [selectedRow, setSelectedRow] = useState(null); // Fila seleccionada
   const [clientPos, setClientPos] = useState({ x: 0, y: 0, isOpen: false });
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [columnsSubmenu, setColumnsSubmenu] = useState(false);
   const [columnVisibility, setColumnVisibility] = useState(
     Object.fromEntries(columns.map((column) => [column, true]))
-  ); 
+  );
 
   const search = (term) => {
     const filteredData = info.filter((row) => {
@@ -68,31 +71,44 @@ export default function Table({ columns, info }) {
       [column]: !prevVisibility[column],
     }));
   };
+
+  const handleClickColumnsSubmenu = () => {
+    if (columnsSubmenu) setColumnsSubmenu(false);
+    else setColumnsSubmenu(true);
+  };
   return (
     <div className="py-10 flex justify-start pl-3 pr-20 flex-col gap-3">
       <div className="flex gap-3">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            search(e.target.value);
-          }}
-          className="px-2 py-1 border rounded"
-        />
-        <div>
-          Ver:
-          {columns.map((column, index) => (
-            <label key={index} className="ml-2">
-              <input
-                type="checkbox"
-                checked={columnVisibility[column]}
-                onChange={() => toggleColumnVisibility(column)}
-              />
-              {column}
-            </label>
-          ))}
+        <div className="flex justify-center items-center gap-2">
+          <span>
+            <BsSearch />
+          </span>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              search(e.target.value);
+            }}
+            className="px-2 py-1 border rounded"
+          />
+        </div>
+
+        <div
+          onClick={handleClickColumnsSubmenu}
+          className="flex justify-center items-center bg-slate-300 rounded-md"
+        >
+          <button className="flex justify-center items-center bg-slate-300 py-1 px-2 rounded-md gap-1">
+            <span>Columnas</span>
+            <span
+              className={`transition-transform duration-150 ${
+                columnsSubmenu ? "rotate-0" : "rotate-180"
+              }`}
+            >
+              {<IoIosArrowDropleftCircle size="1.5em" />}
+            </span>
+          </button>
         </div>
       </div>
 
@@ -122,21 +138,38 @@ export default function Table({ columns, info }) {
               onClick={(event) => handleRowClick(rowIndex, event)}
               onContextMenu={(event) => handleContextMenu(rowIndex, event)}
             >
-              {columns.map(
-                (column, columnIndex) =>
-                  columnVisibility[column] ? (
-                    <td
-                      key={columnIndex}
-                      className="border-2 text-sm text-left px-2"
-                    >
-                      {row[column]}
-                    </td>
-                  ) : null
+              {columns.map((column, columnIndex) =>
+                columnVisibility[column] ? (
+                  <td
+                    key={columnIndex}
+                    className="border-2 text-sm text-left px-2"
+                  >
+                    {row[column]}
+                  </td>
+                ) : null
               )}
             </tr>
           ))}
         </tbody>
       </table>
+      {columnsSubmenu && (
+        <div className="fixed top-[4.3em] grid grid-cols-5 ml-[21.6em] bg-slate-200 rounded-md">
+          {columns.map((column, index) => (
+            <label
+              key={index}
+              className=" bg-slate-200 p-3 hover:bg-slate-100 rounded-md"
+            >
+              <input
+                type="checkbox"
+                className=" bg-red-100"
+                checked={columnVisibility[column]}
+                onChange={() => toggleColumnVisibility(column)}
+              />
+              {column}
+            </label>
+          ))}
+        </div>
+      )}
       {clientPos.isOpen && (
         <ContextMenu
           x={clientPos.x}
@@ -166,7 +199,10 @@ function ContextMenu({ x, y, setClientPos }) {
           </li>
         ))}
       </ul>
-      <button onClick={() => setClientPos({ x: 0, y: 0, isOpen: false })} className="hover:bg-red-500 w-full text-left">
+      <button
+        onClick={() => setClientPos({ x: 0, y: 0, isOpen: false })}
+        className="hover:bg-red-500 w-full text-left"
+      >
         Close
       </button>
     </div>

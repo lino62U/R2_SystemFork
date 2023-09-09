@@ -15,7 +15,7 @@ export default function Login({ setIsLogged }) {
         
         Cookies.set("token", "aaaaaaaaaaaaa");
         setIsLogged(true);
-        navigate("/");
+        navigate("/system");
       } catch (error) {
         console.log(error);
       }
@@ -25,10 +25,10 @@ export default function Login({ setIsLogged }) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-blue-500 to-green-500">
-      <div className="flex justify-center p-10 bg-slate-800  rounded-md ">
+    <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-blue-500 to-green-500 ">
+      <div className="flex justify-center px-10 py-40 bg-slate-800  rounded-md items-center">
         <form className="flex gap-5 flex-col">
-          <div className="flex p-5 justify-star items-center bg-white rounded-md">
+          <div className="flex p-3 justify-star items-center bg-white rounded-md">
             <svg
               width="24"
               height="24"
@@ -54,7 +54,7 @@ export default function Login({ setIsLogged }) {
               className="text-left rounded-md px-5 py-2 focus:outline-none"
             ></input>
           </div>
-          <div className="flex p-5 justify-star items-center bg-white rounded-md">
+          <div className="flex p-3 justify-star items-center bg-white rounded-md">
             <svg
               width="24"
               height="24"
