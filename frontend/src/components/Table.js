@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
+import Modal from "./Modal";
 export default function Table({ columns, info }) {
   const [sortedInfo, setSortedInfo] = useState([...info]);
   const [sortColumn, setSortColumn] = useState(""); // Columna actualmente seleccionada
@@ -8,6 +9,15 @@ export default function Table({ columns, info }) {
   const [selectedRow, setSelectedRow] = useState(null); // Fila seleccionada
   const [clientPos, setClientPos] = useState({ x: 0, y: 0, isOpen: false });
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const [columnsSubmenu, setColumnsSubmenu] = useState(false);
   const [columnVisibility, setColumnVisibility] = useState(
@@ -142,7 +152,7 @@ export default function Table({ columns, info }) {
                 columnVisibility[column] ? (
                   <td
                     key={columnIndex}
-                    className="border-2 text-sm text-left px-2"
+                    className="border-2 text-sm text-left px-2 overflow-ellipsis overflow-hidden whitespace-nowrap max-w-[200px]"
                   >
                     {row[column]}
                   </td>
@@ -175,12 +185,22 @@ export default function Table({ columns, info }) {
           x={clientPos.x}
           y={clientPos.y}
           setClientPos={setClientPos}
+          openModal={openModal}
         />
       )}
+      <div>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          obj={sortedInfo[selectedRow]}
+        >
+          
+        </Modal>
+      </div>
     </div>
   );
 }
-function ContextMenu({ x, y, setClientPos }) {
+function ContextMenu({ x, y, setClientPos, openModal }) {
   const opciones = ["Editar", "Borrar", "Ver", "Hoja de Calculo"];
   return (
     <div
@@ -193,7 +213,10 @@ function ContextMenu({ x, y, setClientPos }) {
       <ul className="">
         {opciones.map((e, index) => (
           <li className="flex" key={index}>
-            <button className="hover:bg-slate-400 w-full flex-1 text-left">
+            <button
+              className="hover:bg-slate-400 w-full flex-1 text-left"
+              onClick={openModal}
+            >
               {e}
             </button>
           </li>
