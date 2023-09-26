@@ -1,12 +1,13 @@
 package com.project.r2system.security.Auth;
 
-import com.project.r2system.data.roles.ERole;
-import com.project.r2system.data.roles.Role;
-import com.project.r2system.data.roles.RoleRepository;
-import com.project.r2system.data.users.User;
-import com.project.r2system.data.users.UserRepository;
+import com.project.r2system.domain.user.entities.ERole;
+import com.project.r2system.domain.user.entities.Role;
+import com.project.r2system.domain.user.RoleRepository;
+import com.project.r2system.domain.user.entities.User;
+import com.project.r2system.domain.user.UserRepository;
 import com.project.r2system.security.payload.LoginRequest;
 import com.project.r2system.security.payload.RegisterRequest;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +29,7 @@ public class AuthService {
 
     private final RoleRepository roleRepository ;
 
-    public AuthResponse login(LoginRequest request) {
+    public AuthResponse login(@NotNull LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         String token=jwtService.getToken(user);
@@ -37,7 +38,7 @@ public class AuthService {
             .build();
     }
 
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse register(@NotNull RegisterRequest request) {
         User user = User.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode( request.getPassword()))

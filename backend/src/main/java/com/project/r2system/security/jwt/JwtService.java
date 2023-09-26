@@ -35,11 +35,13 @@ public class JwtService {
                 .collect(Collectors.toList());
 
         claims.put("roles", roles);
+        claims.put("username", user.getUsername());
+
 
         return Jwts
             .builder()
             .setClaims(claims)
-            .setSubject(user.getUsername())
+            //.setSubject(user.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
             .signWith(getKey(), SignatureAlgorithm.HS256)
